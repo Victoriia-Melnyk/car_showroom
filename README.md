@@ -1,19 +1,25 @@
 # 🚗 Car Showroom
 
-Single Page Application built with React that displays a list of vehicles and allows users to view details and leave comments.
+Single Page Application built with React that displays a list of vehicles and allows users to view detailed information and leave comments.
+
+---
 
 ## 🔗 Live Demo
 
-👉 [Open app](LINK_HERE)
+👉 https://car-showroom-ulhe.vercel.app/
+
+---
 
 ## ✨ Features
 
-- Vehicle list with search (debounced)
-- Vehicle details page
-- Image gallery
-- Comments system (stored in localStorage)
-- Responsive design
-- Semantic HTML
+- 🔍 Vehicle search with debounce
+- 🚗 Vehicle details page
+- 🖼 Image gallery
+- 💬 Comments system (stored in localStorage)
+- 📱 Responsive layout (420px – 1440px)
+- ♿ Semantic and accessible HTML
+
+---
 
 ## 🛠 Tech Stack
 
@@ -22,9 +28,45 @@ Single Page Application built with React that displays a list of vehicles and al
 - Vite
 - CSS Modules (BEM)
 
+---
+
 ## 🚀 Getting Started
 
 ```bash
 npm install
 npm run dev
 ```
+
+---
+
+## 📦 Build
+
+```bash
+npm run build
+```
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+  components/
+  pages/
+  types/
+  styles/
+```
+
+---
+
+## 💡 Notes
+
+- Data is fetched from DummyJSON API (`/products/category/vehicle`)
+- Comments are persisted in browser localStorage
+- Implemented without UI libraries (custom CSS with BEM)
+
+---
+
+## 👩‍💻 Author
+
+Viktoriia Melnyk
