@@ -6,7 +6,7 @@ import { CommentList } from '../../components/CommentList/CommentList';
 import styles from './VehiclePage.module.css';
 
 export function VehiclePage() {
-	const { id } = useParams<{ id: string }>();
+	const { id } = useParams<{ id?: string }>();
 
 	const [vehicle, setVehicle] = useState<Vehicle | null>(null);
 	const [loading, setLoading] = useState(true);
@@ -14,10 +14,11 @@ export function VehiclePage() {
 	const [comment, setComment] = useState('');
 	const [localComments, setLocalComments] = useState<string[]>(() => {
 		const stored = JSON.parse(localStorage.getItem('comments') || '{}');
-		return stored[id] || [];
+		return id ? stored[id] || [] : [];
 	});
 
 	useEffect(() => {
+		if (!id) return;
 		fetch(`https://dummyjson.com/products/${id}`)
 			.then(res => {
 				if (!res.ok) throw new Error('Failed to fetch');
@@ -52,30 +53,29 @@ export function VehiclePage() {
 		(e: React.SyntheticEvent) => {
 			e.preventDefault();
 
-			if (!comment.trim()) return;
+			if (!comment.trim() || !id) return;
 
 			const stored = JSON.parse(localStorage.getItem('comments') || '{}');
 			const vehicleComments = stored[id] || [];
 
 			const updatedComments = [...vehicleComments, comment];
 
-			const updated = {
+			const updated: Record<string, string[]> = {
 				...stored,
 				[id]: updatedComments,
 			};
 
 			localStorage.setItem('comments', JSON.stringify(updated));
 
-			// 🔥 ОНОВЛЮЄМО STATE
 			setLocalComments(updatedComments);
-
 			setComment('');
 		},
 		[comment, id],
 	);
 
-	if (loading) return <p>Loading vehicle...</p>;
-	if (error || !vehicle) return <p>Failed to load vehicle</p>;
+	if (!id) return <p>Invalid vehicle ID</p>;
+	if (loading) return <p role="status">Loading vehicle...</p>;
+	if (error || !vehicle) return <p role="alert">Failed to load vehicle</p>;
 
 	return (
 		<article className={styles.page}>
