@@ -1,0 +1,36 @@
+.list__author {
+	font-weight: 600;
+	color: var(--color-accent);
+}
+
+.list__text {
+	font-size: 14px;
+	color: var(--color-text-muted);
+}
+
+.list__title {
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 16px;
+	color: var(--color-text-primary);
+}
+
+.list__empty {
+	color: var(--color-text-secondary);
+	font-size: 14px;
+}
+
+.list__items {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.list__item {
+	padding: 12px 14px;
+	margin-bottom: 12px;
+
+	background: var(--color-bg-main);
+	border: 1px solid var(--color-border-soft);
+	border-radius: 12px;
+}
